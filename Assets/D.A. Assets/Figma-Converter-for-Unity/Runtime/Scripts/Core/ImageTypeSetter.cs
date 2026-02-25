@@ -262,7 +262,7 @@ namespace DA_Assets.FCU
             }
             else if (!fobject.Size.IsSupportedRenderSize(monoBeh.Settings.ImageSpritesSettings.ImageScale, out Vector2Int spriteSize, out Vector2Int _renderSize))
             {
-                reason = $"render size is big: {spriteSize} x {_renderSize}";
+                reason = $"render _size is big: {spriteSize} x {_renderSize}";
                 result = false;
             }
             else if (!fobject.IsRectangle())

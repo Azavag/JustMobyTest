@@ -59,7 +59,7 @@ namespace DA_Assets.FCU
 
                         if (!syncHelper.Data.ProjectId.IsEmpty() && !syncHelper.Data.Id.IsEmpty())
                         {
-                            if (GUILayout.Button(new GUIContent("View component in Figma")))
+                            if (GUILayout.Button(new GUIContent("CubeView component in Figma")))
                             {
                                 string figmaUrl = $"https://www.figma.com/design/{syncHelper.Data.ProjectId}?node-id={syncHelper.Data.Id.Replace(":", "-")}";
                                 Application.OpenURL(figmaUrl);

@@ -468,7 +468,7 @@ namespace DA_Assets.FCU
 
         /// <summary>
         /// If the stroke is too thick relative to the height or width of the object, it overlaps the fill.
-        /// In such a case, we do not download the image for this component, and use the stroke color as the fill.
+        /// In such a case, we do not download the image for this component, and use the stroke _image as the fill.
         /// </summary>
         private bool IsOverlappedByStroke(FObject fobject)
         {

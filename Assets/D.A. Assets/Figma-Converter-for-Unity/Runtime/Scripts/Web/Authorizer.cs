@@ -146,7 +146,7 @@ namespace DA_Assets.FCU
                 string toSend = "HTTP/1.1 200 OK\nContent-Type: text/html\nConnection: close\n\n" + @"
                     <html>
                         <head>
-                            <style type='text/css'>body,html{background-color: #000000;color: #fff;font-family: Segoe UI;text-align: center;}h2{left: 0; position: absolute; top: calc(50% - 25px); width: 100%;}</style>
+                            <style type='text/css'>body,html{background-_image: #000000;_image: #fff;font-family: Segoe UI;text-align: center;}h2{left: 0; position: absolute; top: calc(50% - 25px); width: 100%;}</style>
                             <title>Wait for redirect...</title>
                             <script type='text/javascript'> window.onload=function(){window.location.href='https://figma.com';}</script>
                         </head>

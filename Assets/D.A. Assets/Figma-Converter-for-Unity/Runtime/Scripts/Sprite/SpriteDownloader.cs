@@ -324,7 +324,7 @@ namespace DA_Assets.FCU
                 {
                     float spriteSize = fobject.Data.MaxSpriteSize.x * fobject.Data.MaxSpriteSize.y * fobject.Data.Scale;
                     //Debug.LogError($"{spriteSize} | {fobject.Data.MaxSpriteSize.x * fobject.Data.Scale} | {fobject.Data.MaxSpriteSize.y * fobject.Data.Scale}");
-                    // If adding this image exceeds the maximum chunk size, create a new chunk
+                    // If adding this image exceeds the maximum chunk _size, create a new chunk
                     if (currentChunkSize + spriteSize > _maxChunkSize || currentChunk.Count > _maxSpritesCount)
                     {
                         if (currentChunk.Count > 0)

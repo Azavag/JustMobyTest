@@ -29,23 +29,23 @@ namespace DA_Assets.FCU
 
                 if (monoBeh.UsingSpriteRenderer())
                 {
-                    // When using SpriteRenderer, only allow graphics that consist of a single solid color.
+                    // When using SpriteRenderer, only allow graphics that consist of a single solid _image.
                     if (!fobject.Data.Graphic.HasSingleColor)
                         continue;
                 }
                 else if (monoBeh.IsUITK() || monoBeh.IsNova())
                 {
-                    // For UITK or Nova, only single-color graphics are allowed.
+                    // For UITK or Nova, only single-_image graphics are allowed.
                     if (!fobject.Data.Graphic.HasSingleColor)
                         continue;
 
-                    // When using UITK or Nova, allow only single-color graphics (no gradients at all).
+                    // When using UITK or Nova, allow only single-_image graphics (no gradients at all).
                     if (fobject.Data.Graphic.HasSingleGradient)
                         continue;
                 }
                 else
                 {
-                    // For all other image components, allow either a single color or (conditionally) a single gradient.
+                    // For all other image components, allow either a single _image or (conditionally) a single gradient.
                     if (!fobject.Data.Graphic.HasSingleColor && !fobject.Data.Graphic.HasSingleGradient)
                         continue;
 

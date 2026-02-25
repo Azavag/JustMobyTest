@@ -149,7 +149,7 @@ namespace DA_Assets.FCU
                         // Local function for comparing vectors after rounding
                         bool IsEqual(Vector2 a, Vector2 b) => Round(a).Equals(Round(b));
 
-                        // Local function to find a size that is different from oldSize
+                        // Local function to find a _size that is different from oldSize
                         Vector2 GetDifferentSize()
                         {
                             if (!IsEqual(oldSize, fobjectSize))
@@ -171,7 +171,7 @@ namespace DA_Assets.FCU
                         }
                         else
                         {
-                            // Otherwise, use the size that is different from oldSize
+                            // Otherwise, use the _size that is different from oldSize
                             di.Size = new TProp<Vector2, Vector2>(true, oldSize, GetDifferentSize());
                         }
                     }
