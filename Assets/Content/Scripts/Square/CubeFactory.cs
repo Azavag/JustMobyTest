@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CubeFactory : MonoBehaviour
 {
@@ -13,8 +12,8 @@ public class CubeFactory : MonoBehaviour
     public CubeController Create(CubeConfig config, Transform parent)
     {
         CubeController cube = Instantiate(cubePrefab, parent);
-
         cube.Initialize(config, canvas, this, dragLayer, false);
+        cube.name = config.name;
         return cube;
     }
 }
