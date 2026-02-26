@@ -42,4 +42,15 @@ public class CubeView : MonoBehaviour
         _rectTransform.DOScale(0f, 0.2f);
         _canvasGroup.DOFade(0f, 0.2f).OnComplete(() => onComplete?.Invoke());
     }
+
+    public void BlockRaycast(bool isBlock)
+    {
+        _canvasGroup.blocksRaycasts = isBlock;
+    }
+
+    public void MakeTransparent()
+    {
+        _canvasGroup.DOFade(0.25f, 0.2f)
+            .Play();
+    }
 }
