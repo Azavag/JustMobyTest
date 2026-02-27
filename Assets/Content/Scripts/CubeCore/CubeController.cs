@@ -27,10 +27,9 @@ public class CubeController : MonoBehaviour,
     private CubeModel _cubeModel;
     public CubeModel CubeModel => _cubeModel;
     public CubeView View => _cubeView;
-    public bool IsTowerPart => _isTowerPart;
 
-    public event Action OnDragStart;
-
+    public bool IsTowerPart { get => _isTowerPart; set => _isTowerPart = value; }
+    public bool IsClone { get => _isClone; set => _isClone = value; }
 
     private void Awake()
     {
@@ -107,9 +106,8 @@ public class CubeController : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        DragEvents.RaiseDragEnded(this);
         if (!_isClone) return;           
-        _cubeView.BlockRaycast(false);
+        DragEvents.RaiseDragEnded(this);
     }
 
     // Метод для выставления копии под курсор

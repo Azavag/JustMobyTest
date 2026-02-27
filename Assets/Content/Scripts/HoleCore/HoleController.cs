@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
@@ -6,13 +6,14 @@ using DG.Tweening;
 public class HoleController : MonoBehaviour, IDropHandler
 {
     [Header("Hole Settings")]
-    [SerializeField] private float fallDuration = 0.5f;    // Время падения куба внутрь
-    [SerializeField] private float rotationAngle = 360f;   // Вращение по Z
+    [SerializeField] private float fallDuration = 0.5f;    // Р’СЂРµРјСЏ РїР°РґРµРЅРёСЏ РєСѓР±Р° РІРЅСѓС‚СЂСЊ
+    [SerializeField] private float rotationAngle = 360f;   // Р’СЂР°С‰РµРЅРёРµ РїРѕ Z
     [SerializeField] private RectTransform holeRect;
     [SerializeField] private RectTransform holeMask;
+    [SerializeField] private NotificationController notificationController;
 
     /// <summary>
-    /// Проверяет, попал ли куб в овальную дыру
+    /// РџСЂРѕРІРµСЂСЏРµС‚, РїРѕРїР°Р» Р»Рё РєСѓР± РІ РѕРІР°Р»СЊРЅСѓСЋ РґС‹СЂСѓ
     /// </summary>
     /// <param name="cubeRect"></param>
     /// <returns></returns>
@@ -20,7 +21,7 @@ public class HoleController : MonoBehaviour, IDropHandler
     {
         Vector2 localPoint;
 
-        // Переводим мировую позицию куба в локальные координаты дыры
+        // РџРµСЂРµРІРѕРґРёРј РјРёСЂРѕРІСѓСЋ РїРѕР·РёС†РёСЋ РєСѓР±Р° РІ Р»РѕРєР°Р»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РґС‹СЂС‹
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             holeRect,
             cubeRect.position,
@@ -40,17 +41,17 @@ public class HoleController : MonoBehaviour, IDropHandler
     }
 
     /// <summary>
-    /// Погружение куба внутрь дыры с вращением
+    /// РџРѕРіСЂСѓР¶РµРЅРёРµ РєСѓР±Р° РІРЅСѓС‚СЂСЊ РґС‹СЂС‹ СЃ РІСЂР°С‰РµРЅРёРµРј
     /// </summary>
     public void ConsumeCube(CubeController cube)
     {
         RectTransform cubeRect = cube.View.RectTransform;
         cube.View.BlockRaycast(false);
 
-        // Делаем куб дочерним Hole, чтобы маска скрывала его
+        // Р”РµР»Р°РµРј РєСѓР± РґРѕС‡РµСЂРЅРёРј Hole, С‡С‚РѕР±С‹ РјР°СЃРєР° СЃРєСЂС‹РІР°Р»Р° РµРіРѕ
         cubeRect.SetParent(holeMask, true);
 
-        // Определяем конечную позицию 
+        // РћРїСЂРµРґРµР»СЏРµРј РєРѕРЅРµС‡РЅСѓСЋ РїРѕР·РёС†РёСЋ 
         Vector2 targetPos = cubeRect.anchoredPosition - new Vector2(0, 300);
 
         Sequence seq = DOTween.Sequence();
@@ -58,7 +59,8 @@ public class HoleController : MonoBehaviour, IDropHandler
         seq.Join(cubeRect.DORotate(new Vector3(0, 0, rotationAngle), fallDuration, RotateMode.FastBeyond360)
             .SetEase(Ease.InQuad));
 
-        // После анимации деактивируем куб
+        notificationController.NotifyCubeFellInHole();
+        // РџРѕСЃР»Рµ Р°РЅРёРјР°С†РёРё РґРµР°РєС‚РёРІРёСЂСѓРµРј РєСѓР±
         seq.OnComplete(() =>
         {
             cube.gameObject.SetActive(false);
@@ -67,7 +69,7 @@ public class HoleController : MonoBehaviour, IDropHandler
     }
 
     /// <summary>
-    /// IDropHandler.OnDrop — вызывается автоматически при отпускании куба над  дырой
+    /// IDropHandler.OnDrop вЂ” РІС‹Р·С‹РІР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРё РѕС‚РїСѓСЃРєР°РЅРёРё РєСѓР±Р° РЅР°Рґ  РґС‹СЂРѕР№
     /// </summary>
     /// <param name="eventData"></param>
     public void OnDrop(PointerEventData eventData)
